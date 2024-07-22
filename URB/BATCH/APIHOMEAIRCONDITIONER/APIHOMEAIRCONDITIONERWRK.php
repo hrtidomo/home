@@ -2,9 +2,6 @@
 
 namespace Business;
 require_once $globalPath . '/MODEL/BL/Result.php';
-require_once $globalPath . '/MODEL/BL/XLSX.php';
-require_once $globalPath . '/MODEL/BL/Mail.php';
-require_once $globalPath . '/MODEL/BL/SMTP.php';
 require_once $appPath    . '/APIHOMEAIRCONDITIONERDAO.php';
 
 class APIHOMEAIRCONDITIONER {

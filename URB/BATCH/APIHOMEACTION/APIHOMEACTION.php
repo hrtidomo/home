@@ -16,16 +16,11 @@ $currentDirectory = dirname(__FILE__);
 $confLocation = $currentDirectory;
 global $configuration;
 global $globalPath;
-global $webdavPath;
 global $appPath;
 $configuration = parse_ini_file($currentDirectory . "/../conf.ini");
 $globalPath    = $configuration["GLBLPATH"];
-$webdavPath    = $configuration["WEBDAVPATH"];
 $appPath       = trim($configuration["BATCHROOT"]) . "/APIHOMEACTION";
- 
 require_once $globalPath . '/MODEL/BL/Result.php';
-require_once $globalPath . '/MODEL/BL/Logger.php';
-require_once $webdavPath . '/vendor/autoload.php';
 require_once  $appPath   . '/APIHOMEWRKACTION.php';
 global $loggerObject;
 $result = new \Business\Result();
