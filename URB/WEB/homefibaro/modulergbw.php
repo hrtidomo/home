@@ -1,25 +1,19 @@
 <?php
-session_start();
-if(strcmp($_SESSION['UserData'],"SI")!=0)
-{
-header("location:login.php");
-}
+$room= $_GET['room'];
+$location= $_GET['location'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
-
-
 <head>
-  <meta charset="utf-8">
-  <title>HTML</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Oscar Jose Vidart  Pach" />
+<meta name="copyright" content="Crichel  De La  Rosa Tibrey" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script type="text/javascript" src="./varfile.js"></script>
 <script>
 
 
 </script>
-  
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 
@@ -127,11 +121,10 @@ td, th {
 	<div id="login">
           <table class="table"> 
             <tr>
-            <td COLSPAN="2"><button class="btnlong"><i class="fa fa-video-camera"></i>  HABITACION</button></td>
+            <td COLSPAN="2"><button class="btnlong"><i class="fa fa-video-camera"></i> <?php echo  $room;  ?></button></td>
             </tr> 
             <tr>
-            <td><input type="button" class="my-buttononoff"  id="abd"  onclick="actiononoff('abd')" value="turnOn" /></td>
-            <td>Lampara de pie </td>
+            <td td COLSPAN="2" ><?php echo  $location;  ?> </td>
             </tr>
 	    <tr>
             <td>Set Color</td>

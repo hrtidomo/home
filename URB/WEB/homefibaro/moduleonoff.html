@@ -1,7 +1,4 @@
-<?php
-$room= $_GET['room'];
-$location= $_GET['location'];
-?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -125,10 +122,11 @@ td, th {
 	<div id="login">
           <table class="table"> 
             <tr>
-            <td COLSPAN="2"><button class="btnlong"><i class="fa fa-video-camera"></i><?php echo  $room;  ?></button></td>
+            <td COLSPAN="2"><button class="btnlong"><i class="fa fa-video-camera"></i>  COMEDOR</button></td>
             </tr> 
             <tr>
-            <td COLSPAN="2"><?php echo  $location;  ?></td>
+            <td><input type="button" class="my-buttononoff"  id="abd"  onclick="actiononoff('abd')" value="turnOn" /></td>
+            <td>Lampara de pie </td>
             </tr> 
         </table>
         </div>	

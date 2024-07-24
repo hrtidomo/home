@@ -17,7 +17,8 @@ class APIHOMEACTION {
 //*Tempstop   : Devuelbe las diferentes temperaturas button
 //*Tempbed    : Devuelbe las diferentes temperaturas button
 //*Tempsun    : Devuelbe las diferentes temperaturas button
-//*turn  	  : Controla los interruptores on/off winsocked
+//*turnconf    
+//*turn      : Controla los interruptores on/off winsocked
 //*turnonoff  : Controla los interruptores on/off button
 //*********************************************** */
 public static function performTask($url, $username, $password,$module,$action,$flat,$userx) {
@@ -595,6 +596,33 @@ public static function performTask($url, $username, $password,$module,$action,$f
 			array_push($itemRecords["items"], $itemDetails);
 			$result->object=json_encode($itemRecords);
 		break;	
+		//**************************************************** */
+		//* ONOFF
+		//**************************************************** */
+		//**************************************************** */
+		//* action : Configura los paramteros
+		//* module : Vacio 
+		//* flat   : vacio
+		//**************************************************** */
+		case "turnconf":
+			$itemRecords=array();
+			$itemRecords["items"]=array(); 
+			$result = \DAOProcess::turnconf($module);
+			foreach ($result->moduleid as $row)
+			{
+				 $resultmodulehtml=$row['html'];
+				 $itemDetails=array(
+					"html" => $resultmodulehtml
+				
+				);
+				
+			}
+
+			array_push($itemRecords["items"], $itemDetails);
+			$result->object=json_encode($itemRecords);
+			break;
+		
+		
 		//**************************************************** */
 		//* Carga los ONOFF
 		//**************************************************** */

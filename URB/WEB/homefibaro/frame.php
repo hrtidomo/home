@@ -8,7 +8,10 @@ session_start();
 <html>
 <head>
 <meta charset="utf-8">
- <title>HTML</title>
+<meta name="author" content="Oscar Jose Vidart  Pach" />
+<meta name="copyright" content="Crichel  De La  Rosa Tibrey" /> 
+ <link rel="icon" href="logo.ico" type="image/x-icon">
+ <title>MY SMART HOUSE</title>
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -338,7 +341,7 @@ ws.addEventListener('message', function (event) {
 //*case 'a': Posiciona los sensores temperatura  moduletempwindsocked 332
 //*case 'a': Posiciona los sensores temperatura  moduletempbutton 390
 //*case 'd': Posiciona los sensores de onofff   moduleonoffsocked  444
-//*case 'd': Posiciona los sensores de onofff  moduleonoffbutton     484
+//*case 'd': Posiciona los sensores de onofff  moduleonoffbuttoclick     484
 //*case 'f': Posiconas las lupas moduleflatwindsocked  630
 //*case 'f': Posiconas las lupas moduleflatwindbutton   718
 //*case 'p': Carga el plano principal
@@ -533,7 +536,7 @@ function moduleonoffsocked(plane) {
 //**********************************************************************************
 //ESTA FUNCION CAMBIA EL ESTADO DE ON A OFF 
 //**********************************************************************************
-function moduleonoffbutton(idmodule) {
+function moduleonoffbuttoclick(idmodule) {
 	let element = document.getElementById(idmodule);
 	let elementStyle = window.getComputedStyle(element);
 	let elementColor = elementStyle.getPropertyValue('background-color');
@@ -578,7 +581,29 @@ function moduleonoffbutton(idmodule) {
 }
 
 
-
+//**********************************************************************************
+//ESTA FUNCION MUESTRA LAS DIBRENTE CONFIGURACIONES 
+//********************************************************************************
+function moduleonoffbuttondoubleclick(idmodule) {
+//let element = document.getElementById(idmodule);
+	var xmlhttp = new XMLHttpRequest();
+	var url = "http://"+wwwapache+"/apihome/APIHOMEACTION.php?iphome="+apihomefibaro+"&user=admin&password=admin&module="+idmodule+"&action=turnconf&flat=&userx";
+	xmlhttp.onreadystatechange = function() {
+    		if (this.readyState == 4 && this.status == 200) {
+        	var myArr = JSON.parse(this.responseText);
+			html=myArr.items[0].html;
+			if (document.getElementById("module").src.includes(html)==false)
+			{
+			document.getElementById("module").src = 	html;
+			}
+			
+		
+			}
+		
+	};
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send();
+}
 
 //**********************************************************************************
 //ESTA FUNCION DEVUELBE EL PLANO DE UNA PARTE DE LA CASA
@@ -934,16 +959,16 @@ function webcamxbutton(idwebcam) {
 		   				</div>
 				<! -- ONOFF --!>
 					   <div class='divaad' id="divaad"  >   
-						<button   class="btnshort"  onclick="moduleonoffbutton('aad')"    ondblclick="modulexx('aad')" id="aad"     ><i class="fa fa-lightbulb-o"></i></button>
+						<button   class="btnshort"  onmousemove="moduleonoffbuttondoubleclick('aad')"  ondblclick="moduleonoffbuttondoubleclick('aad')" onclick="moduleonoffbuttoclick('aad')"     id="aad"     ><i class="fa fa-lightbulb-o"></i></button>
 					   </div>
 					   <div class='divabd' id="divabd"  >   
-						<button   class="btnshort"  onclick="moduleonoffbutton('abd')"    ondblclick="modulexx('abd')" id="abd"     ><i class="fa fa-lightbulb-o"></i></button>
+						<button   class="btnshort"  onmousemove="moduleonoffbuttondoubleclick('abd')"  ondblclick="moduleonoffbuttondoubleclick('abd')" onclick="moduleonoffbuttoclick('abd')"    id="abd"     ><i class="fa fa-lightbulb-o"></i></button>
 					   </div>	
 					   <div class='divacd' id="divacd"  >   
-						<button   class="btnshort"  onclick="moduleonoffbutton('acd')"    ondblclick="modulexx('acd')" id="acd"     ><i class="fa fa-lightbulb-o"></i></button>
+						<button   class="btnshort"  onclick="moduleonoffbuttoclick('acd')"     id="acd"     ><i class="fa fa-lightbulb-o"></i></button>
 					   </div>	
 					   <div class='divadd' id="divadd"  >   
-						<button   class="btnshort"  onclick="moduleonoffbutton('add')"    ondblclick="modulexx('add')" id="add"     ><i class="fa fa-lightbulb-o"></i></button>
+						<button   class="btnshort"  onclick="moduleonoffbuttoclick('add')"     id="add"     ><i class="fa fa-lightbulb-o"></i></button>
 					   </div>	
 				   <! -- EYE --!>
 				    	   <div class='divaae' id="divaae"  >   
@@ -1033,7 +1058,7 @@ function webcamxbutton(idwebcam) {
 				   	
 			</div>
 			<div class='in mando'  >
-			<iframe src="modulergbw.html" height="100%" width="100%"  name="module" id="module"  ></iframe></p>	    			
+			<iframe src="" height="100%" width="100%"  name="module" id="module"  ></iframe></p>	    			
 			</div>
         		<div class='in webcam'>
 			<iframe src="" height="480" width="640" name="webcam" id="webcam"  ></iframe>   			

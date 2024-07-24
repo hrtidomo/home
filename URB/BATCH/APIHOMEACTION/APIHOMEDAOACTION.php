@@ -115,6 +115,39 @@ public static function searchcamid($nameshort,$action) {
             }   
     return $result;
     }
+
+/********************************************** ****/
+//* DEVUELBE UN ARRAY DE ELEMENOS ONOFF
+//* case "flat":
+//* case "state":
+//*************************************************/
+public static function turnconf($module) {
+        $result = new \Business\Result();
+        $connection = \Persistence\Connection::getInstance();
+        try {
+                    $query = "SELECT html   FROM devicesfibaro   WHERE nameshort = ?   ";
+                    $stmt = $connection->db->prepare($query);
+                    if ($stmt) 
+                            {
+                            $position = 1;
+                           
+                            $stmt->bindValue($position++,$module);
+                            $stmt->execute();
+                            $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+                            }
+                            $result->moduleid=$rows;  
+            
+            } 
+              catch (\PDOException $e) {
+                    $result->errorCode = -2;
+                    $result->errorDescription = $e->getMessage();
+            } catch (\Exception $e) {
+                    $result->errorCode = -1;
+                    $result->errorDescription = $e->getMessage();
+            }   
+    return $result;
+    }
+
 /********************************************** ****/
 //* DEVUELBE UN ARRAY DE ELEMENOS ONOFF
 //* case "flat":
